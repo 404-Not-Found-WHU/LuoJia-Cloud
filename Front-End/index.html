@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>404-Not-Found</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+        <div id="wrapper">
+            <div id="bg">
+                <div class="page active" style="background-image: url('WHU-Pic/XZL-S-Vertical.jpg');"></div>
+                <div class="page" style="background-image: url('WHU-Pic/XZL-S-Plan.jpg');"></div>
+                <div class="page" style="background-image: url('WHU-Pic/YD-A-Vertical.jpg');"></div>
+                <div class="page" style="background-image: url('WHU-Pic/YD-W-Plan.jpg');"></div>
+            </div>
+            <div id="overlay"></div>
+            <div id="main">
+                <!-- Header -->
+                <header id="header">
+                    <style>
+                        .glow-text {
+                            font-size: 60px;
+                            font-weight: bold;
+                            color: #ffffff;
+                            text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 
+                                        0 0 20px #ffffff, 0 0 25px #ffffff, 0 0 30px #ffffff;
+                        }
+                    </style>
+                    <h1 class="glow-text" style="font-family: 华文行楷; font-size:300px; color:rgb(0, 0, 0)">云  上  珞  珈</h1>
+                    <p style="color: rgb(5, 5, 5) ; font-size:40px; font-weight: bold;"><strong>景点预览  &nbsp;&bull;&nbsp;  路线规划  &nbsp;&bull;&nbsp;  渠道信息</p>
+                    <nav>
+                        <ul>
+                            <li><a href="LogUp.html" class="icon login">注册</a></li>
+                            <li><a href="#" class="icon"> </a></li>
+                            <li><a href="LogIn.html" class="icon logup">登录</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <span class="copyright">© 团队主页: <a href="https://github.com/404-Not-Found-WHU/LuoJia-Cloud">404-Not-Found</a>.</span>
+                </footer>
+            </div>
+        </div>
+        <script>
+            window.onload = function() {
+                document.body.classList.remove('is-preload');
+                var pages = document.querySelectorAll('.page');
+                var currentIndex = 0;
+                var nextIndex = 1;
+
+                function flipPage() {
+                    pages[currentIndex].classList.remove('active');
+                    pages[currentIndex].classList.add('flip');
+                    setTimeout(function() {
+                        pages[currentIndex].classList.remove('flip');
+                        pages[nextIndex].classList.add('active');
+                        currentIndex = nextIndex;
+                        nextIndex = (nextIndex + 1) % pages.length;
+                    }, 1000); // 动画持续时间1秒
+                }
+
+                window.setInterval(flipPage, 5000); // 每5秒切换一次
+            }
+            window.ontouchmove = function() { return false; }
+            window.onorientationchange = function() { document.body.scrollTop = 0; }
+        </script>
+    </body>
+</html>

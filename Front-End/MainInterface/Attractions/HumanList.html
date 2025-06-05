@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>404-Not-Found</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<!-- 添加CSS样式 -->
+			<style>
+		.tag-icon {
+			display: inline-block;
+			padding: 5px 10px;
+			border-radius: 15px;
+			font-weight: bold;
+			color: #fff;
+			font-size: 20px;
+		}
+		.unlearned { background-color: gold; }
+		.learned { background-color: #27ae60; }
+
+		/* 三张并列轮播样式 */
+		.carousel-container {
+			overflow: hidden;
+			width: 960px; /* 300*3 + margin */
+			margin: 40px auto;
+		}
+		.carousel {
+			display: flex;
+			justify-content: space-between;
+		}
+		.carousel img {
+			width: 300px;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			display: none;
+		}
+		.carousel img.active {
+			display: block;
+		}
+		.carousel-controls {
+			text-align: center;
+			margin-top: 10px;
+		}
+		.carousel-button {
+			background: none !important;
+			border: none !important;
+			outline: none;
+			box-shadow: none;
+			appearance: none;
+			-webkit-appearance: none;
+			color: #000;
+			font-family: "微软雅黑", sans-serif;
+			font-size: 16px;
+			padding: 12px 24px;
+			cursor: pointer;
+		}
+		.carousel-button:focus,
+		.carousel-button:hover {
+			outline: none;
+			box-shadow: none;
+			/* 可自定义 hover 效果 */
+		}
+	</style>
+</head>
+<body class="is-preload">
+	<header id="header">
+		<a href="HumanList.html" class="title">自然风光</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#one">返回首页</a></li>
+				<li><a href="Human.html">景点介绍</a></li>
+				<li><a href="HumanList.html" class="active">具体信息</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="wrapper">
+		<section id="main" class="wrapper style2-alt">
+			<div class="inner">
+				<h1 class="major">景点列表</h1>
+				<section>
+					<h2>推荐景点1--老斋舍</h2>
+					<p style="color: gold;font-size: larger;">
+						依山而筑，巍然矗立者，老斋舍也。琉璃碧瓦，朱红窗棂，飞檐翘角，尽显民国建筑之雍容气度。拾级而上，石阶厚重，拱门回廊，深邃幽静。四栋相连，取“天地玄黄”为名，蕴含古意。斋舍之内，木梯吱呀，岁月留痕；窗外古树掩映，四季景致入牖。昔日莘莘学子负笈其中，晨昏苦读，弦歌不辍。今虽功用有易，然其庄重典雅之姿，仍是武大魂魄所系。伫立廊下，抚今追昔，仿佛闻得昔日书声朗朗，见得先贤身影往来，历史之厚重与学术之薪火，于此青砖黛瓦间凝固、流淌。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="LZS-carousel">
+							<img src="../WHU/老斋舍/1.jpeg" alt="老斋舍1" />
+							<img src="../WHU/老斋舍/2.jpg" alt="老斋舍2" />
+							<img src="../WHU/老斋舍/3.jpg" alt="老斋舍3" />
+							<img src="../WHU/老斋舍/4.jpeg" alt="老斋舍4" />
+							<img src="../WHU/老斋舍/5.jpg" alt="老斋舍5" />
+							<img src="../WHU/老斋舍/6.jpg" alt="老斋舍6" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevLZS()">上一组</button>
+							<button class="carousel-button" onclick="nextLZS()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点2--樱顶</h2>
+					<p style="color: gold;font-size: larger;">
+						珞珈之巅，樱花城堡之上，是为樱顶，亦老图书馆所在。此乃武大精神之制高点，气象非凡。登顶四顾，珞珈苍翠尽收眼底，东湖烟波奔来眼前，江城风貌亦隐约可见。老图书馆巍峨居中，绿瓦覆顶，八角重檐，形似皇冠，庄严肃穆，气宇轩昂。其内穹窿高阔，雕梁画栋，书香弥漫，曾为无数学子精神家园。樱顶平台开阔，古树环绕。春日樱花环抱，如置云端花海；平日则清风拂面，令人神思飞越。于此仰观宇宙之大，俯察学府之盛，油然而生“会当凌绝顶”之慨，天地人文物我交融，斯文在兹。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="YD-carousel">
+							<img src="../WHU/樱顶/1.jpg" alt="樱顶1" />
+							<img src="../WHU/樱顶/2.jpeg" alt="樱顶2" />
+							<img src="../WHU/樱顶/3.jpeg" alt="樱顶3" />
+							<img src="../WHU/樱顶/4.jpeg" alt="樱顶4" />
+							<img src="../WHU/樱顶/5.jpeg" alt="樱顶5" />
+							<img src="../WHU/樱顶/6.jpeg" alt="樱顶6" />
+							<img src="../WHU/樱顶/7.jpeg" alt="樱顶7" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevYD()">上一组</button>
+							<button class="carousel-button" onclick="nextYD()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点3--十八栋</h2>
+					<p style="color: gold;font-size: larger;">
+						珞珈山腰，绿荫深处，散落一十八栋别墅，名曰“十八栋”。青石小径蜿蜒其间，红瓦黄墙掩映于苍松翠柏之中，静谧清幽，宛若世外。此乃昔日教授寓所，曾栖诸多学界泰斗、风云人物。每栋小楼，形制各异，或精巧别致，或质朴大方，皆与山林和谐共生。漫步其间，但闻鸟语虫鸣，松涛阵阵。石阶苔痕，门廊藤蔓，无不诉说着时光的故事。遥想当年，鸿儒往来，谈笑有鸿儒，思想于此碰撞，智慧在此闪光。一砖一瓦，一草一木，皆浸染着浓郁的人文气息与厚重的历史沧桑，堪称学府圣地之“半山文华”。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="SBD-carousel">
+							<img src="../WHU/十八栋/1.jpeg" alt="十八栋1" />
+							<img src="../WHU/十八栋/2.jpg" alt="十八栋2" />
+							<img src="../WHU/十八栋/3.jpg" alt="十八栋3" />
+							<img src="../WHU/十八栋/4.jpg" alt="十八栋4" />
+							<img src="../WHU/十八栋/5.jpg" alt="十八栋5" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevSBD()">上一组</button>
+							<button class="carousel-button" onclick="nextSBD()">下一组</button>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</section>
+	</div>
+
+	<footer id="footer" class="wrapper style2-alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; 本平台由武汉大学404-Not-Found团队打造</li>
+				<li>出品团队: <a href="https://github.com/404-Not-Found-WHU/LuoJia-Cloud">404-Not-Found</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<script>
+		// 老斋舍轮播脚本
+		let currentIndexLZS = 0;
+		const imagesLZS = Array.from(document.querySelectorAll('#LZS-carousel img'));
+		const groupSizeLZS = 3;
+
+		function updateLZS() {
+			imagesLZS.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeLZS; i++) {
+				const idx = (currentIndexLZS + i) % imagesLZS.length;
+				imagesLZS[idx].classList.add('active');
+			}
+		}
+
+		function nextLZS() {
+			currentIndexLZS = (currentIndexLZS + groupSizeLZS) % imagesLZS.length;
+			updateLZS();
+		}
+
+		function prevLZS() {
+			currentIndexLZS = (currentIndexLZS - groupSizeLZS + imagesLZS.length) % imagesLZS.length;
+			updateLZS();
+		}
+
+		window.addEventListener('load', updateLZS);
+	</script>
+
+	<script>
+		// 樱顶轮播脚本
+		let currentIndexYD = 0;
+		const imagesYD = Array.from(document.querySelectorAll('#YD-carousel img'));
+		const groupSizeYD = 3;
+
+		function updateYD() {
+			imagesYD.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeYD; i++) {
+				const idx = (currentIndexYD + i) % imagesYD.length;
+				imagesYD[idx].classList.add('active');
+			}
+		}
+
+		function nextYD() {
+			currentIndexYD = (currentIndexYD + groupSizeYD) % imagesYD.length;
+			updateYD();
+		}
+
+		function prevYD() {
+			currentIndexYD = (currentIndexYD - groupSizeYD + imagesYD.length) % imagesYD.length;
+			updateYD();
+		}
+
+		window.addEventListener('load', updateYD);
+	</script>
+
+	<script>
+		// 十八栋轮播脚本
+		let currentIndexSBD = 0;
+		const imagesSBD = Array.from(document.querySelectorAll('#SBD-carousel img'));
+		const groupSizeSBD = 3;
+
+		function updateSBD() {
+			imagesSBD.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeSBD; i++) {
+				const idx = (currentIndexSBD + i) % imagesSBD.length;
+				imagesSBD[idx].classList.add('active');
+			}
+		}
+
+		function nextSBD() {
+			currentIndexSBD = (currentIndexSBD + groupSizeSBD) % imagesSBD.length;
+			updateSBD();
+		}
+
+		function prevSBD() {
+			currentIndexSBD = (currentIndexSBD - groupSizeSBD + imagesSBD.length) % imagesSBD.length;
+			updateSBD();
+		}
+
+		window.addEventListener('load', updateSBD);
+	</script>
+
+</body>
+</html>

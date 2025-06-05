@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>404-Not-Found</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<!-- 添加CSS样式 -->
+			<style>
+		.tag-icon {
+			display: inline-block;
+			padding: 5px 10px;
+			border-radius: 15px;
+			font-weight: bold;
+			color: #fff;
+			font-size: 20px;
+		}
+		.unlearned { background-color: gold; }
+		.learned { background-color: #27ae60; }
+
+		/* 三张并列轮播样式 */
+		.carousel-container {
+			overflow: hidden;
+			width: 960px; /* 300*3 + margin */
+			margin: 40px auto;
+		}
+		.carousel {
+			display: flex;
+			justify-content: space-between;
+		}
+		.carousel img {
+			width: 300px;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			display: none;
+		}
+		.carousel img.active {
+			display: block;
+		}
+		.carousel-controls {
+			text-align: center;
+			margin-top: 10px;
+		}
+		.carousel-button {
+			background: none !important;
+			border: none !important;
+			outline: none;
+			box-shadow: none;
+			appearance: none;
+			-webkit-appearance: none;
+			color: #000;
+			font-family: "微软雅黑", sans-serif;
+			font-size: 16px;
+			padding: 12px 24px;
+			cursor: pointer;
+		}
+		.carousel-button:focus,
+		.carousel-button:hover {
+			outline: none;
+			box-shadow: none;
+			/* 可自定义 hover 效果 */
+		}
+	</style>
+</head>
+<body class="is-preload">
+	<header id="header">
+		<a href="SpecialList.html" class="title">自然风光</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#one">返回首页</a></li>
+				<li><a href="Special.html">景点介绍</a></li>
+				<li><a href="SpecialList.html" class="active">具体信息</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="wrapper">
+		<section id="main" class="wrapper style2-alt">
+			<div class="inner">
+				<h1 class="major">景点列表</h1>
+				<section>
+					<h2>推荐景点1--牌坊</h2>
+					<p style="color: gold;font-size: larger;">
+						武大正门，巍巍然矗立者，乃国立武汉大学之牌坊也。六柱冲天，五门洞开，气势恢宏，庄重典雅。坊额高悬，正面镌“国立武汉大学”，背面书“文法理工农医”六大学院名目，字迹遒劲，彰显学府之格局与追求。其造型融汇中西，既有传统牌楼之威仪，又具现代建筑之简练。历经沧桑，几度重修，始终为武大之精神图腾与地理坐标。学子于此入门，即入学术殿堂；游人至此瞻仰，顿生敬仰之情。牌坊矗立，不仅界分内外，更昭示着“明诚弘毅”的校训精神，是武大百年风华最雄浑的开篇序章。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="PF-carousel">
+							<img src="../WHU/牌坊/1.jpg" alt="牌坊1" />
+							<img src="../WHU/牌坊/2.png" alt="牌坊2" />
+							<img src="../WHU/牌坊/3.jpg" alt="牌坊3" />
+							<img src="../WHU/牌坊/4.jpg" alt="牌坊4" />
+							<img src="../WHU/牌坊/5.jpeg" alt="牌坊5" />
+							<img src="../WHU/牌坊/6.jpg" alt="牌坊6" />
+							<img src="../WHU/牌坊/7.jpg" alt="牌坊7" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevPF()">上一组</button>
+							<button class="carousel-button" onclick="nextPF()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点2--樱花</h2>
+					<p style="color: gold;font-size: larger;">
+						珞珈樱花，早已超越寻常花木，乃武大魂魄之华彩，春日最动人诗篇。其盛名远播，不仅因规模之宏，更因花事与学府气韵之交融。或植于大道两侧，夹道迎宾，织就漫天云锦；或伴于斋舍窗前，粉白掩映朱楼，平添几分书卷温柔；或立于山径之旁，临风照水，顾影自怜。花开时节，如霞蔚，似雪涌，短暂而极尽绚烂。落英时节，飞红成阵，铺地如毡，更有一种“质本洁来还洁去”的静美。学子行于花下，青春与芳华共舞；游人慕名而至，心醉于书香花海。一树樱花，见证岁月流转，承载无数学子情思，成为武大最温柔隽永的文化符号与时光印记。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="YH-carousel">
+							<img src="../WHU/樱花/1.jpeg" alt="樱花1" />
+							<img src="../WHU/樱花/2.jpeg" alt="樱花2" />
+							<img src="../WHU/樱花/3.jpeg" alt="樱花3" />
+							<img src="../WHU/樱花/4.jpeg" alt="樱花4" />
+							<img src="../WHU/樱花/5.jpeg" alt="樱花5" />
+							<img src="../WHU/樱花/6.jpeg" alt="樱花6" />
+							<img src="../WHU/樱花/7.jpeg" alt="樱花7" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevYH()">上一组</button>
+							<button class="carousel-button" onclick="nextYH()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点3--万林艺术博物馆</h2>
+					<p style="color: gold;font-size: larger;">
+						珞珈山麓，卓然而立者，万林艺术博物馆也。其形若天外飞石，又如凌云之帆，现代之姿，卓尔不群，与周遭古朴建筑相映成趣。银灰外壁，线条流畅，光影变幻间，尽显时代锋芒。此馆乃武大融汇古今、艺理兼修之新地标。馆内空间宏阔，展陈精妙，或藏历代文物珍宝，沧桑厚重；或纳现当代艺术杰作，先锋锐意；更有学人科研结晶，智慧璀璨。登临馆顶天台，俯瞰校园全貌，湖光山色尽收眼底，学府新颜与历史底蕴在此交汇。万林之立，不仅为庋藏珍品之所，更为启迪心智、激荡灵感、沟通科学与人文之桥梁，为百年学府注入蓬勃不息之艺术活力。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="WLBWG-carousel">
+							<img src="../WHU/万林艺术博物馆/1.jpg" alt="万林艺术博物馆1" />
+							<img src="../WHU/万林艺术博物馆/2.jpeg" alt="万林艺术博物馆2" />
+							<img src="../WHU/万林艺术博物馆/3.jpg" alt="万林艺术博物馆3" />
+							<img src="../WHU/万林艺术博物馆/4.jpeg" alt="万林艺术博物馆4" />
+							<img src="../WHU/万林艺术博物馆/5.jpg" alt="万林艺术博物馆5" />
+							<img src="../WHU/万林艺术博物馆/6.jpg" alt="万林艺术博物馆6" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevWLBWG()">上一组</button>
+							<button class="carousel-button" onclick="nextWLBWG()">下一组</button>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</section>
+	</div>
+
+	<footer id="footer" class="wrapper style2-alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; 本平台由武汉大学404-Not-Found团队打造</li>
+				<li>出品团队: <a href="https://github.com/404-Not-Found-WHU/LuoJia-Cloud">404-Not-Found</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<script>
+		// 牌坊轮播脚本
+		let currentIndexPF = 0;
+		const imagesPF = Array.from(document.querySelectorAll('#PF-carousel img'));
+		const groupSizePF = 3;
+
+		function updatePF() {
+			imagesPF.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizePF; i++) {
+				const idx = (currentIndexPF + i) % imagesPF.length;
+				imagesPF[idx].classList.add('active');
+			}
+		}
+
+		function nextPF() {
+			currentIndexPF = (currentIndexPF + groupSizePF) % imagesPF.length;
+			updatePF();
+		}
+
+		function prevPF() {
+			currentIndexPF = (currentIndexPF - groupSizePF + imagesPF.length) % imagesPF.length;
+			updatePF();
+		}
+
+		window.addEventListener('load', updatePF);
+	</script>
+
+	<script>
+		// 樱花轮播脚本
+		let currentIndexYH = 0;
+		const imagesYH = Array.from(document.querySelectorAll('#YH-carousel img'));
+		const groupSizeYH = 3;
+
+		function updateYH() {
+			imagesYH.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeYH; i++) {
+				const idx = (currentIndexYH + i) % imagesYH.length;
+				imagesYH[idx].classList.add('active');
+			}
+		}
+
+		function nextYH() {
+			currentIndexYH = (currentIndexYH + groupSizeYH) % imagesYH.length;
+			updateYH();
+		}
+
+		function prevYH() {
+			currentIndexYH = (currentIndexYH - groupSizeYH + imagesYH.length) % imagesYH.length;
+			updateYH();
+		}
+
+		window.addEventListener('load', updateYH);
+	</script>
+
+	<script>
+		// 万林艺术博物馆轮播脚本
+		let currentIndexWLBWG = 0;
+		const imagesWLBWG = Array.from(document.querySelectorAll('#WLBWG-carousel img'));
+		const groupSizeWLBWG = 3;
+
+		function updateWLBWG() {
+			imagesWLBWG.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeWLBWG; i++) {
+				const idx = (currentIndexWLBWG + i) % imagesWLBWG.length;
+				imagesWLBWG[idx].classList.add('active');
+			}
+		}
+
+		function nextWLBWG() {
+			currentIndexWLBWG = (currentIndexWLBWG + groupSizeWLBWG) % imagesWLBWG.length;
+			updateWLBWG();
+		}
+
+		function prevWLBWG() {
+			currentIndexWLBWG = (currentIndexWLBWG - groupSizeWLBWG + imagesWLBWG.length) % imagesWLBWG.length;
+			updateWLBWG();
+		}
+
+		window.addEventListener('load', updateWLBWG);
+	</script>
+
+</body>
+</html>

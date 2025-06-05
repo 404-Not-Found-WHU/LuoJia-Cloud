@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>404-Not-Found</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<!-- 添加CSS样式 -->
+			<style>
+		.tag-icon {
+			display: inline-block;
+			padding: 5px 10px;
+			border-radius: 15px;
+			font-weight: bold;
+			color: #fff;
+			font-size: 20px;
+		}
+		.unlearned { background-color: gold; }
+		.learned { background-color: #27ae60; }
+
+		/* 三张并列轮播样式 */
+		.carousel-container {
+			overflow: hidden;
+			width: 960px; /* 300*3 + margin */
+			margin: 40px auto;
+		}
+		.carousel {
+			display: flex;
+			justify-content: space-between;
+		}
+		.carousel img {
+			width: 300px;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			display: none;
+		}
+		.carousel img.active {
+			display: block;
+		}
+		.carousel-controls {
+			text-align: center;
+			margin-top: 10px;
+		}
+		.carousel-button {
+			background: none !important;
+			border: none !important;
+			outline: none;
+			box-shadow: none;
+			appearance: none;
+			-webkit-appearance: none;
+			color: #000;
+			font-family: "微软雅黑", sans-serif;
+			font-size: 16px;
+			padding: 12px 24px;
+			cursor: pointer;
+		}
+		.carousel-button:focus,
+		.carousel-button:hover {
+			outline: none;
+			box-shadow: none;
+			/* 可自定义 hover 效果 */
+		}
+	</style>
+</head>
+<body class="is-preload">
+	<header id="header">
+		<a href="NatureList.html" class="title">自然风光</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#one">返回首页</a></li>
+				<li><a href="Nature.html">景点介绍</a></li>
+				<li><a href="NatureList.html" class="active">具体信息</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="wrapper">
+		<section id="main" class="wrapper style2-alt">
+			<div class="inner">
+				<h1 class="major">景点列表</h1>
+				<section>
+					<h2>推荐景点1--凌波门</h2>
+					<p style="color: gold;font-size: larger;">
+						东湖之畔，凌波门巍然。此门非为御敌，实乃通幽之径，观澜之台也。烟波浩渺，水天一色，极目远眺，心旷神怡。春则烟波浩渺，夏则荷风送爽，秋则长空雁阵，冬则寒水凝光。晨曦微露，学子于此晨读，书声琅琅，与湖波相和；夕照熔金，游人凭栏远望，看归帆点点，鸥鹭齐飞。栈道蜿蜒入湖，人行其上，恍若凌波微步，飘飘乎遗世独立。湖风拂面，涤荡尘虑，水光潋滟，映照学府之灵秀。一湖碧水，万顷澄波，映照珞珈之山色，涵养武大之精神，诚为涤心洗目之佳境。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="LBM-carousel">
+							<img src="../WHU/凌波门/1.jpeg" alt="凌波门1" />
+							<img src="../WHU/凌波门/2.jpg" alt="凌波门2" />
+							<img src="../WHU/凌波门/3.jpg" alt="凌波门3" />
+							<img src="../WHU/凌波门/4.jpg" alt="凌波门4" />
+							<img src="../WHU/凌波门/5.jpg" alt="凌波门5" />
+							<img src="../WHU/凌波门/6.jpg" alt="凌波门6" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevLBM()">上一组</button>
+							<button class="carousel-button" onclick="nextLBM()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点2--珞珈山</h2>
+					<p style="color: gold;font-size: larger;">
+						学府之基，首推珞珈。山势逶迤，林木葱茏，四季流转，景致各异。春日山花烂漫，新绿初染，鸟鸣深涧；夏日浓荫蔽日，蝉噪林逾静，清风自生凉；秋日层林尽染，枫红槭黄，铺金叠彩；冬日雪压松枝，玉树琼花，更显肃穆清幽。山径曲折通幽，拾级而上，古木参天，藤萝缠绕，苔痕上阶绿。登临高处，俯瞰学宫楼宇，星罗棋布于苍翠之间；远眺东湖烟波，浩淼接天。珞珈山色，非徒自然之胜，更蕴钟灵毓秀之气，滋养代代学人，文脉深植于此莽莽山林。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="LJS-carousel">
+							<img src="../WHU/珞珈山/1.jpeg" alt="珞珈山1" />
+							<img src="../WHU/珞珈山/2.jpeg" alt="珞珈山2" />
+							<img src="../WHU/珞珈山/3.jpeg" alt="珞珈山3" />
+							<img src="../WHU/珞珈山/4.jpeg" alt="珞珈山4" />
+							<img src="../WHU/珞珈山/5.jpg" alt="珞珈山5" />
+							<img src="../WHU/珞珈山/6.jpg" alt="珞珈山6" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevLJS()">上一组</button>
+							<button class="carousel-button" onclick="nextLJS()">下一组</button>
+						</div>
+					</div>
+
+					<hr />
+
+					<h2>推荐景点3--樱花大道</h2>
+					<p style="color: gold;font-size: larger;">
+						春回大地，樱花大道乃珞珈绝色。老斋舍前，两行樱树，绵延数百步。花期既至，千朵万朵，如云似霞，骤然绽放，灿若星河坠地。粉白交织，娇而不艳，丽而不俗。微风过处，落英缤纷，似蝶舞翩跹，铺就锦毯香径。游人学子，摩肩接踵，仰观玉树琼葩，俯拾片片芳菲。花影婆娑，映衬飞檐画栋；笑语欢声，融入落花清风。此景之盛，短暂而绚烂，譬若韶华易逝，教人惜取春光。花开花落间，大道成诗，游人入画，是谓“三月赏樱，唯有武大”，诚非虚言。
+					</p>
+
+					<div class="carousel-container">
+						<div class="carousel" id="YHDD-carousel">
+							<img src="../WHU/樱花大道/1.jpeg" alt="樱花大道1" />
+							<img src="../WHU/樱花大道/2.jpeg" alt="樱花大道2" />
+							<img src="../WHU/樱花大道/3.jpeg" alt="樱花大道3" />
+							<img src="../WHU/樱花大道/4.jpeg" alt="樱花大道4" />
+							<img src="../WHU/樱花大道/5.jpeg" alt="樱花大道5" />
+							<img src="../WHU/樱花大道/6.jpeg" alt="樱花大道6" />
+						</div>
+						<div class="carousel-controls">
+							<button class="carousel-button" onclick="prevYHDD()">上一组</button>
+							<button class="carousel-button" onclick="nextYHDD()">下一组</button>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</section>
+	</div>
+
+	<footer id="footer" class="wrapper style2-alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; 本平台由武汉大学404-Not-Found团队打造</li>
+				<li>出品团队: <a href="https://github.com/404-Not-Found-WHU/LuoJia-Cloud">404-Not-Found</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<script>
+		// 凌波门轮播脚本
+		let currentIndexLBM = 0;
+		const imagesLBM = Array.from(document.querySelectorAll('#LBM-carousel img'));
+		const groupSizeLBM = 3;
+
+		function updateLBM() {
+			imagesLBM.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeLBM; i++) {
+				const idx = (currentIndexLBM + i) % imagesLBM.length;
+				imagesLBM[idx].classList.add('active');
+			}
+		}
+
+		function nextLBM() {
+			currentIndexLBM = (currentIndexLBM + groupSizeLBM) % imagesLBM.length;
+			updateLBM();
+		}
+
+		function prevLBM() {
+			currentIndexLBM = (currentIndexLBM - groupSizeLBM + imagesLBM.length) % imagesLBM.length;
+			updateLBM();
+		}
+
+		window.addEventListener('load', updateLBM);
+	</script>
+
+	<script>
+		// 珞珈山轮播脚本
+		let currentIndexLJS = 0;
+		const imagesLJS = Array.from(document.querySelectorAll('#LJS-carousel img'));
+		const groupSizeLJS = 3;
+
+		function updateLJS() {
+			imagesLJS.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeLJS; i++) {
+				const idx = (currentIndexLJS + i) % imagesLJS.length;
+				imagesLJS[idx].classList.add('active');
+			}
+		}
+
+		function nextLJS() {
+			currentIndexLJS = (currentIndexLJS + groupSizeLJS) % imagesLJS.length;
+			updateLJS();
+		}
+
+		function prevLJS() {
+			currentIndexLJS = (currentIndexLJS - groupSizeLJS + imagesLJS.length) % imagesLJS.length;
+			updateLJS();
+		}
+
+		window.addEventListener('load', updateLJS);
+	</script>
+
+	<script>
+		// 樱花大道轮播脚本
+		let currentIndexYHDD = 0;
+		const imagesYHDD = Array.from(document.querySelectorAll('#YHDD-carousel img'));
+		const groupSizeYHDD = 3;
+
+		function updateYHDD() {
+			imagesYHDD.forEach(img => img.classList.remove('active'));
+			for (let i = 0; i < groupSizeYHDD; i++) {
+				const idx = (currentIndexYHDD + i) % imagesYHDD.length;
+				imagesYHDD[idx].classList.add('active');
+			}
+		}
+
+		function nextYHDD() {
+			currentIndexYHDD = (currentIndexYHDD + groupSizeYHDD) % imagesYHDD.length;
+			updateYHDD();
+		}
+
+		function prevYHDD() {
+			currentIndexYHDD = (currentIndexYHDD - groupSizeYHDD + imagesYHDD.length) % imagesYHDD.length;
+			updateYHDD();
+		}
+
+		window.addEventListener('load', updateYHDD);
+	</script>
+
+</body>
+</html>
