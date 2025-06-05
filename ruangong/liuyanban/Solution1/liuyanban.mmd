@@ -1,0 +1,39 @@
+sequenceDiagram
+    participant U as 用户
+    participant Browser as 浏览器
+    participant Page as _default.aspx 页面
+    participant DB as SQL Server 数据库
+
+    Note over U,Browser: 初次访问页面
+    U->>Browser: 打开留言板页面
+    Browser->>Page: Page_Load()
+    alt 首次加载(IsPostBack=false)
+        Page->>DB: Open()
+        Page->>DB: select * from MessageBoard
+        DB-->>Page: 返回留言数据
+        Page->>Browser: 显示留言列表
+    else 回发(IsPostBack=true)
+        Page->>Page: 跳过 showData()
+    end
+
+    Note over U,Browser: 用户添加留言
+    U->>Browser: 填写留言并点击“添加”
+    Browser->>Page: btnAdd_Click()
+    Page->>DB: Open()
+    Page->>DB: insert into MessageBoard(username, body, ip)
+    DB-->>Page: 执行成功
+    Page->>Browser: 提示“留言发送成功”
+    Page->>DB: select * from MessageBoard
+    DB-->>Page: 返回更新后的留言列表
+    Page->>Browser: 刷新留言显示
+
+    Note over U,Browser: 用户点击“删除”按钮
+    U->>Browser: 点击对应留言的“删除”按钮
+    Browser->>Page: btnDel_Click()
+    Page->>DB: Open()
+    Page->>DB: delete from MessageBoard where id = {留言ID}
+    DB-->>Page: 执行成功
+    Page->>Browser: 提示“留言删除成功”
+    Page->>DB: select * from MessageBoard
+    DB-->>Page: 返回更新后的留言列表
+    Page->>Browser: 刷新留言显示

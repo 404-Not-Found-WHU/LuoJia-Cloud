@@ -1,0 +1,107 @@
+classDiagram
+
+
+class User {
+    +string UserId
+    +string Username
+    +string Password
+    +register()
+    +login()
+    +logout()
+    +updateProfile()
+    +deleteAccount()
+}
+
+class ScenicSpot {
+    +string SpotId
+    +string Name
+    +string Description
+    +double Latitude
+    +double Longitude
+    +getInfo()
+    +addSpot()
+    +editSpot()
+    +deleteSpot()
+}
+
+class Message {
+    +string MessageId
+    +string Username
+    +string Content
+    +DateTime Timestamp
+    +postMessage()
+    +deleteMessage()
+    +getMessages()
+}
+
+User "1" --> "*" Message : 发布留言
+
+class Product {
+    +string ProductId
+    +string Name
+    +double Price
+    +int Stock
+    +int Sold
+    +addProduct()
+    +editProduct()
+    +deleteProduct()
+    +checkAvailability()
+}
+
+class Vendor {
+    +string VendorId
+    +string Name
+    +addVendor()
+    +editVendor()
+    +deleteVendor()
+}
+
+class Category {
+    +string CategoryId
+    +string Name
+    +addCategory()
+    +editCategory()
+    +deleteCategory()
+}
+
+class Order {
+    +string OrderId
+    +string UserId
+    +DateTime OrderTime
+    +List<OrderItem> Items
+    +placeOrder()
+    +cancelOrder()
+    +getOrderDetails()
+}
+
+class OrderItem {
+    +string ProductId
+    +int Quantity
+    +double Subtotal
+}
+
+User "1" --> "*" Order
+Order "1" --> "*" OrderItem
+OrderItem "*" --> "1" Product
+Product "*" --> "1" Vendor
+Product "*" --> "1" Category
+
+User "1" --> "*" Product : 管理权限(管理员)
+
+
+class RoutePlan {
+    +string PlanId
+    +DateTime StartTime
+    +DateTime EndTime
+    +List<ScenicSpot> Route
+    +generatePlan()
+    +savePlan()
+    +deletePlan()
+}
+
+User "1" --> "*" RoutePlan
+RoutePlan --> "*" ScenicSpot
+
+
+note for Product "文创商品的增删改查，库存管理"
+note for RoutePlan "根据起止时间生成合理路线"

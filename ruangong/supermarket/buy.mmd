@@ -1,0 +1,37 @@
+sequenceDiagram
+    participant 用户
+    participant Register.aspx
+    participant Register.aspx.cs
+    participant 数据库
+    participant Login.aspx
+    participant Billing.aspx
+    participant Billing.aspx.cs
+
+    用户->>Register.aspx: 打开注册页面
+    Register.aspx->>Register.aspx.cs: 填写用户名、电子邮箱、电话号码、密码并点击注册
+    Register.aspx.cs->>数据库: 查询邮箱是否已注册
+    数据库-->>Register.aspx.cs: 返回查询结果
+    alt 邮箱已存在
+        Register.aspx.cs-->>Register.aspx: 显示“邮箱已被注册”
+    else 邮箱未注册
+        Register.aspx.cs->>数据库: 插入新用户信息
+        数据库-->>Register.aspx.cs: 返回插入结果
+        Register.aspx.cs-->>Register.aspx: 显示“注册成功”
+        用户->>Login.aspx: 跳转到登录页面
+    end
+
+    用户->>Login.aspx: 输入邮箱和密码登录
+    Login.aspx->>数据库: 查询用户信息
+    数据库-->>Login.aspx: 返回用户信息
+    Login.aspx-->>Billing.aspx: 登录成功，跳转到账单页面
+
+    用户->>Billing.aspx: 选择商品，输入数量
+    Billing.aspx->>Billing.aspx.cs: 点击“添加到账单”
+    Billing.aspx.cs->>数据库: 更新商品库存
+    Billing.aspx.cs->>ViewState: 更新账单DataTable
+    Billing.aspx.cs-->>Billing.aspx: 刷新购物车显示
+
+    用户->>Billing.aspx: 点击“提交订单”
+    Billing.aspx->>Billing.aspx.cs: 生成账单PDF
+    Billing.aspx.cs->>数据库: 插入账单信息
+    Billing.aspx.cs-->>用户: 下载账单PDF

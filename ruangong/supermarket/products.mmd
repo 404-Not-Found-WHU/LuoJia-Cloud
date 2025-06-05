@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant 管理员
+    participant Products.aspx
+    participant Products.aspx.cs
+    participant 数据库
+
+
+    管理员->>Products.aspx: 输入商品信息，点击“添加”
+    Products.aspx->>Products.aspx.cs: SaveBtn_Click()
+    alt 信息缺失
+        Products.aspx.cs-->>Products.aspx: 显示“信息缺失！”
+    else 信息完整
+        Products.aspx.cs->>数据库: 插入新商品
+        数据库-->>Products.aspx.cs: 返回插入结果
+        Products.aspx.cs->>数据库: 查询所有商品
+        数据库-->>Products.aspx.cs: 返回商品数据
+        Products.aspx.cs-->>Products.aspx: 显示“商品信息已添加！”
+    end
+
+    管理员->>Products.aspx: 选择希望选中的商品
+    Products.aspx->>Products.aspx.cs: ProductList_SelectedIndexChanged()
+    Products.aspx.cs-->>Products.aspx: 填充商品信息到输入框
+
+    管理员->>Products.aspx: 修改信息，点击“编辑”
+    Products.aspx->>Products.aspx.cs: EditBtn_Click()
+    alt 信息缺失
+        Products.aspx.cs-->>Products.aspx: 显示“信息缺失！”
+    else 信息完整
+        Products.aspx.cs->>数据库: 更新商品信息
+        数据库-->>Products.aspx.cs: 返回更新结果
+        Products.aspx.cs->>数据库: 查询所有商品
+        数据库-->>Products.aspx.cs: 返回商品数据
+        Products.aspx.cs-->>Products.aspx: 显示“商品信息已更新！”
+    end
+
+    管理员->>Products.aspx: 选择商品，点击“删除”
+    Products.aspx->>Products.aspx.cs: DeleteBtn_Click()
+    alt 未选择商品
+        Products.aspx.cs-->>Products.aspx: 显示“请选择要删除的商品！”
+    else 已选择商品
+        Products.aspx.cs->>数据库: 删除商品
+        数据库-->>Products.aspx.cs: 返回删除结果
+        Products.aspx.cs->>数据库: 查询所有商品
+        数据库-->>Products.aspx.cs: 返回商品数据
+        Products.aspx.cs-->>Products.aspx: 显示“商品信息已删除！”
+    end

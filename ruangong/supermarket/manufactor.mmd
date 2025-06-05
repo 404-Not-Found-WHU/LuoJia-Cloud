@@ -1,0 +1,51 @@
+sequenceDiagram
+    participant 管理员
+    participant Manufactors.aspx
+    participant Manufactors.aspx.cs
+    participant 数据库
+
+    管理员->>Manufactors.aspx: 打开生产商管理页面
+    Manufactors.aspx->>Manufactors.aspx.cs: Page_Load()
+    Manufactors.aspx.cs->>数据库: 查询所有生产商
+    数据库-->>Manufactors.aspx.cs: 返回生产商数据
+    Manufactors.aspx.cs-->>Manufactors.aspx: 显示生产商列表
+
+    管理员->>Manufactors.aspx: 输入信息，点击“添加”
+    Manufactors.aspx->>Manufactors.aspx.cs: SaveBtn_Click()
+    alt 信息缺失
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“信息缺失！”
+    else 信息完整
+        Manufactors.aspx.cs->>数据库: 插入新生产商
+        数据库-->>Manufactors.aspx.cs: 返回插入结果
+        Manufactors.aspx.cs->>数据库: 查询所有生产商
+        数据库-->>Manufactors.aspx.cs: 返回生产商数据
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“生产商信息已添加！”
+    end
+
+    管理员->>Manufactors.aspx: 选择希望选中的生产商
+    Manufactors.aspx->>Manufactors.aspx.cs: ManufactList_SelectedIndexChanged()
+    Manufactors.aspx.cs-->>Manufactors.aspx: 填充生产商信息到输入框
+
+    管理员->>Manufactors.aspx: 修改信息，点击“编辑”
+    Manufactors.aspx->>Manufactors.aspx.cs: EditBtn_Click()
+    alt 信息缺失
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“信息缺失！”
+    else 信息完整
+        Manufactors.aspx.cs->>数据库: 更新生产商信息
+        数据库-->>Manufactors.aspx.cs: 返回更新结果
+        Manufactors.aspx.cs->>数据库: 查询所有生产商
+        数据库-->>Manufactors.aspx.cs: 返回生产商数据
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“生产商信息已更新！”
+    end
+
+    管理员->>Manufactors.aspx: 选择生产商，点击“删除”
+    Manufactors.aspx->>Manufactors.aspx.cs: DeleteBtn_Click()
+    alt 信息缺失
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“请选择一条数据！”
+    else 信息完整
+        Manufactors.aspx.cs->>数据库: 删除生产商
+        数据库-->>Manufactors.aspx.cs: 返回删除结果
+        Manufactors.aspx.cs->>数据库: 查询所有生产商
+        数据库-->>Manufactors.aspx.cs: 返回生产商数据
+        Manufactors.aspx.cs-->>Manufactors.aspx: 显示“生产商信息已删除！”
+    end

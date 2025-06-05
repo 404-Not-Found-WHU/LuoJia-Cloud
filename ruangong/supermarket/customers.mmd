@@ -1,0 +1,51 @@
+sequenceDiagram
+    participant 管理员
+    participant Customers.aspx
+    participant Customers.aspx.cs
+    participant 数据库
+
+    管理员->>Customers.aspx: 打开用户管理页面
+    Customers.aspx->>Customers.aspx.cs: Page_Load()
+    Customers.aspx.cs->>数据库: 查询所有用户
+    数据库-->>Customers.aspx.cs: 返回用户数据
+    Customers.aspx.cs-->>Customers.aspx: 显示用户列表
+
+    管理员->>Customers.aspx: 输入信息，点击“添加”
+    Customers.aspx->>Customers.aspx.cs: SaveBtn_Click()
+    alt 信息缺失
+        Customers.aspx.cs-->>Customers.aspx: 显示“信息缺失！”
+    else 信息完整
+        Customers.aspx.cs->>数据库: 插入新用户
+        数据库-->>Customers.aspx.cs: 返回插入结果
+        Customers.aspx.cs->>数据库: 查询所有用户
+        数据库-->>Customers.aspx.cs: 返回用户数据
+        Customers.aspx.cs-->>Customers.aspx: 显示“用户信息已添加！”
+    end
+
+    管理员->>Customers.aspx: 选择希望选中的用户
+    Customers.aspx->>Customers.aspx.cs: CustomerList_SelectedIndexChanged()
+    Customers.aspx.cs-->>Customers.aspx: 填充用户信息到输入框
+
+    管理员->>Customers.aspx: 修改信息，点击“编辑”
+    Customers.aspx->>Customers.aspx.cs: EditBtn_Click()
+    alt 信息缺失
+        Customers.aspx.cs-->>Customers.aspx: 显示“信息缺失！”
+    else 信息完整
+        Customers.aspx.cs->>数据库: 更新用户信息
+        数据库-->>Customers.aspx.cs: 返回更新结果
+        Customers.aspx.cs->>数据库: 查询所有用户
+        数据库-->>Customers.aspx.cs: 返回用户数据
+        Customers.aspx.cs-->>Customers.aspx: 显示“用户信息已更新！”
+    end
+
+    管理员->>Customers.aspx: 选择用户，点击“删除”
+    Customers.aspx->>Customers.aspx.cs: DeleteBtn_Click()
+    alt 信息缺失
+        Customers.aspx.cs-->>Customers.aspx: 显示“信息缺失！”
+    else 信息完整
+        Customers.aspx.cs->>数据库: 删除用户
+        数据库-->>Customers.aspx.cs: 返回删除结果
+        Customers.aspx.cs->>数据库: 查询所有用户
+        数据库-->>Customers.aspx.cs: 返回用户数据
+        Customers.aspx.cs-->>Customers.aspx: 显示“用户信息已删除！”
+    end
