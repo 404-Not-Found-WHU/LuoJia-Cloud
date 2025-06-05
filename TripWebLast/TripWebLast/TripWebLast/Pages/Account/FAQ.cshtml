@@ -1,0 +1,65 @@
+﻿@page
+@model TripWebLast.Pages.Account.FAQ
+@{
+    ViewData["Title"] = "常见问题";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <div class="accordion" id="faqAccordion">
+        @for (int i = 0; i < Model.FAQs.Count; i++)
+        {
+            var faq = Model.FAQs[i];
+            <div class="card mb-2">
+                <div class="card-header" id="heading@(i)">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="#collapse@(i)" aria-controls="collapse@(i)">
+                            @faq.Question
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapse@(i)" class="collapse" aria-labelledby="heading@(i)" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        @faq.Answer
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#collapse0').collapse('show');
+        });
+         $(document).ready(function() {
+            $('#collapse1').collapse('hide');
+        });
+         $(document).ready(function() {
+            $('#collapse2').collapse('hide');
+        });
+         $(document).ready(function() {
+            $('#collapse3').collapse('hide');
+        });
+         $(document).ready(function() {
+            $('#collapse4').collapse('hide');
+        });
+         $(document).ready(function() {
+            $('#collapse5').collapse('hide');
+        });
+                $(document).ready(function() {
+            $('.card-header .btn-link').click(function() {
+                var currentCollapse = $(this).attr('data-target');
+                // 切换当前项的展开状态
+                $(currentCollapse).collapse('toggle');
+                // 折叠其他所有展开的项
+                $('.collapse.show').not(currentCollapse).collapse('hide');
+            });
+        });
+    </script>
+
+}

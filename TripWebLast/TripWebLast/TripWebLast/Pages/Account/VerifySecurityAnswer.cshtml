@@ -1,0 +1,32 @@
+﻿
+@page
+@model VerifySecurityAnswer
+@{
+    ViewData["Title"] = "验证安全问题答案";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h4>请回答你的验证问题的答案</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label>安全问题</label>
+                <p>@Model.SecurityQuestion</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.SecurityAnswer"></label>
+                <input asp-for="Input.SecurityAnswer" class="form-control" />
+                <span asp-validation-for="Input.SecurityAnswer" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Input.Email" />
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
