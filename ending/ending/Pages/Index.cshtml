@@ -1,0 +1,348 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "武汉大学旅游景点推荐系统";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">武汉大学旅游景点推荐</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="needs-validation" novalidate>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="RouteRequest.StartTime" class="form-label">开始时间</label>
+                                        <input asp-for="RouteRequest.StartTime" class="form-control" placeholder="格式: HH:mm (例如: 09:00)" required />
+                                        <span asp-validation-for="RouteRequest.StartTime" class="text-danger"></span>
+                                        <div class="invalid-feedback">请输入有效的开始时间 (HH:mm)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="RouteRequest.EndTime" class="form-label">结束时间</label>
+                                        <input asp-for="RouteRequest.EndTime" class="form-control" placeholder="格式: HH:mm (例如: 17:00)" required />
+                                        <span asp-validation-for="RouteRequest.EndTime" class="text-danger"></span>
+                                        <div class="invalid-feedback">请输入有效的结束时间 (HH:mm)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label asp-for="RouteRequest.InterestType" class="form-label">兴趣类型</label>
+                                <select asp-for="RouteRequest.InterestType" class="form-select" required>
+                                    <option value="">-- 请选择兴趣类型 --</option>
+                                    <option value="人文">人文景观</option>
+                                    <option value="自然">自然景观</option>
+                                </select>
+                                <span asp-validation-for="RouteRequest.InterestType" class="text-danger"></span>
+                                <div class="invalid-feedback">请选择兴趣类型</div>
+                            </div>
+                            
+                            <!-- 隐藏字段用于存储当前位置 -->
+                            <input type="hidden" asp-for="RouteRequest.CurrentLatitude" id="currentLatitude" />
+                            <input type="hidden" asp-for="RouteRequest.CurrentLongitude" id="currentLongitude" />
+                            
+                            <div class="alert alert-info location-status" id="locationStatus">
+                                <i class="bi bi-geo-alt"></i> 正在获取您的位置...
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">生成推荐路线</button>
+                            </div>
+                        </form>
+                        
+                        <script>
+                            // 页面加载完成后获取地理位置
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var locationStatus = document.getElementById('locationStatus');
+                                var submitBtn = document.getElementById('submitBtn');
+                                
+                                // 检查浏览器是否支持地理位置
+                                if (navigator.geolocation) {
+                                    locationStatus.innerHTML = '<i class="bi bi-geo-alt"></i> 正在获取您的位置...';
+                                    
+                                    // 获取当前位置
+                                    navigator.geolocation.getCurrentPosition(
+                                        // 成功回调
+                                        function(position) {
+                                            var latitude = position.coords.latitude;
+                                            var longitude = position.coords.longitude;
+                                            
+                                            // 将位置信息存储到隐藏字段
+                                            document.getElementById('currentLatitude').value = latitude;
+                                            document.getElementById('currentLongitude').value = longitude;
+                                            
+                                            locationStatus.innerHTML = '<i class="bi bi-geo-alt-fill text-success"></i> 已获取您的位置，将为您推荐从当前位置出发的最佳路线';
+                                            locationStatus.classList.remove('alert-info');
+                                            locationStatus.classList.add('alert-success');
+                                            
+                                            console.log('获取位置成功：', latitude, longitude);
+                                        },
+                                        // 错误回调
+                                        function(error) {
+                                            console.error('获取位置失败：', error.message);
+                                            var errorMsg = '';
+                                            
+                                            switch(error.code) {
+                                                case error.PERMISSION_DENIED:
+                                                    errorMsg = '您拒绝了位置请求。将使用默认位置进行路线规划。';
+                                                    break;
+                                                case error.POSITION_UNAVAILABLE:
+                                                    errorMsg = '位置信息不可用。将使用默认位置进行路线规划。';
+                                                    break;
+                                                case error.TIMEOUT:
+                                                    errorMsg = '获取位置超时。将使用默认位置进行路线规划。';
+                                                    break;
+                                                default:
+                                                    errorMsg = '发生未知错误。将使用默认位置进行路线规划。';
+                                            }
+                                            
+                                            locationStatus.innerHTML = '<i class="bi bi-exclamation-triangle text-warning"></i> ' + errorMsg;
+                                            locationStatus.classList.remove('alert-info');
+                                            locationStatus.classList.add('alert-warning');
+                                            
+                                            // 设置默认位置（武汉大学行政楼附近）
+                                            document.getElementById('currentLatitude').value = '30.5383';
+                                            document.getElementById('currentLongitude').value = '114.3008';
+                                        },
+                                        // 选项
+                                        {
+                                            enableHighAccuracy: true,
+                                            timeout: 10000,
+                                            maximumAge: 0
+                                        }
+                                    );
+                                } else {
+                                    // 浏览器不支持地理定位
+                                    locationStatus.innerHTML = '<i class="bi bi-exclamation-triangle text-warning"></i> 您的浏览器不支持地理定位。将使用默认位置进行路线规划。';
+                                    locationStatus.classList.remove('alert-info');
+                                    locationStatus.classList.add('alert-warning');
+                                    
+                                    // 设置默认位置（武汉大学行政楼附近）
+                                    document.getElementById('currentLatitude').value = '30.5383';
+                                    document.getElementById('currentLongitude').value = '114.3008';
+                                }
+                            });
+                        </script>
+                </div>
+            </div>
+
+            @if (Model.RouteResponse != null)
+            {
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0">推荐路线</h3>
+                    </div>
+                    <div class="card-body">
+                        @if (!Model.RouteResponse.Success)
+                        {
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i> @Model.RouteResponse.ErrorMessage
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                <p><strong>路线概要:</strong> @Model.RouteResponse.RouteSummary</p>
+                                <p><strong>景点数量:</strong> @Model.RouteResponse.TotalAttractions 个</p>
+                                <p><strong>总游览时间:</strong> @Model.RouteResponse.TimeConsumption</p>
+                            </div>
+
+                            <div class="table-responsive mb-4">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>景点名称</th>
+                                            <th>区域</th>
+                                            <th>游览时间</th>
+                                            <th>类型</th>
+                                        </tr>
+                                    </thead>/
+                                    <tbody>
+                                        @foreach (var scenery in Model.RouteResponse.Sceneries.OrderBy(s => s.OrderIndex))
+                                        {
+                                            <tr>
+                                                <td>@scenery.OrderIndex</td>
+                                                <td>@scenery.Scenery.SceneryName</td>
+                                                <td>@scenery.Scenery.Zone</td>
+                                                <td>@scenery.TimeWindow</td>
+                                                <td>@scenery.Scenery.SceneryType</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="card mb-4">
+                                <div class="card-header bg-info text-white">
+                                    <h4 class="mb-0">路线地图</h4>
+                                </div>
+                                <div class="card-body text-center">
+                                    <!-- 地图容器 -->
+                                    <div id="mapContainer" style="width: 100%; height: 500px;"></div>
+                                    <p class="text-muted mt-2">路线图显示了推荐景点的位置和游览顺序</p>
+                                    
+                                    <!-- 地图初始化脚本 -->
+                                    <script type="text/javascript">
+                                        // 在页面加载完成后初始化地图
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            // 创建景点数据数组
+                                            var sceneryData = [];
+                                            
+                                            @foreach (var scenery in Model.RouteResponse.Sceneries.OrderBy(s => s.OrderIndex))
+                                            {
+                                                @:sceneryData.push({
+                                                    @:name: "@scenery.Scenery.SceneryName",
+                                                    @:lat: @scenery.Scenery.Latitude,
+                                                    @:lng: @scenery.Scenery.Longitude,
+                                                    @:order: @scenery.OrderIndex,
+                                                    @:sceneryId: "@scenery.Scenery.SceneryID",
+                                                    @:isStart: @(scenery.OrderIndex == 1 ? "true" : "false"),
+                                                    @:isEnd: @(scenery.OrderIndex == Model.RouteResponse.Sceneries.Count ? "true" : "false")
+                                                @:});
+                                            }
+                                            
+                                            if (sceneryData && sceneryData.length > 0) {
+                                                // 计算地图中心点（所有景点的平均位置）
+                                                var centerLat = 0, centerLng = 0;
+                                                sceneryData.forEach(function(item) {
+                                                    centerLat += item.lat;
+                                                    centerLng += item.lng;
+                                                });
+                                                centerLat /= sceneryData.length;
+                                                centerLng /= sceneryData.length;
+                                                
+                                                console.log('初始化地图，中心点：', centerLng, centerLat);
+                                                console.log('AMap对象是否存在：', typeof AMap !== 'undefined');
+                                                
+                                                try {
+                                                    // 检查AMap对象是否存在
+                                                    if (typeof AMap === 'undefined') {
+                                                        throw new Error('高德地图API未加载成功，AMap对象不存在');
+                                                    }
+                                                    
+                                                    // 初始化地图
+                                                    var map = new AMap.Map('mapContainer', {
+                                                        zoom: 15,
+                                                        center: [centerLng, centerLat],
+                                                        mapStyle: 'amap://styles/blue' // 设置地图样式
+                                                    });
+                                                    console.log('地图初始化成功');
+                                                    
+                                                    // 添加地图加载完成事件
+                                                    map.on('complete', function() {
+                                                        console.log('地图加载完成事件触发');
+                                                    });
+                                                } catch (error) {
+                                                    console.error('地图初始化失败：', error);
+                                                    document.getElementById('mapContainer').innerHTML = 
+                                                        '<div class="alert alert-danger">地图初始化失败：' + error.message + '</div>';
+                                                    return;
+                                                }
+                                                
+                                                // 添加标记点
+                                                var markers = [];
+                                                var path = [];
+                                                
+                                                sceneryData.forEach(function(item) {
+                                                    // 根据顺序使用不同的标记颜色和图标
+                                                    var iconColor = item.isStart ? '#00FF00' : 
+                                                                   item.isEnd ? '#FF0000' : '#0000FF';
+                                                    
+                                                    // 创建标记
+                                                    var marker = new AMap.Marker({
+                                                        position: [item.lng, item.lat],
+                                                        title: item.name,
+                                                        label: {
+                                                            content: item.order.toString(),
+                                                            direction: 'top'
+                                                        },
+                                                        icon: new AMap.Icon({
+                                                            size: new AMap.Size(25, 34),
+                                                            image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_' + 
+                                                                  (item.isStart ? 'b' : (item.isEnd ? 'r' : '')) + '.png'
+                                                        })
+                                                    });
+                                                    
+                                                    // 添加点击事件
+                                                    // 添加点击事件
+                                                    marker.on('click', function() {
+                                                    // 获取景点ID并构建照片URL
+                                                    var sceneryId = item.sceneryId;
+                                                    var photoUrl = '/images/scenery/' + sceneryId + '.jpg';
+                                                    var defaultPhotoUrl = '/images/scenery/default.svg';
+                                                    
+                                                    // 创建信息窗体内容，包含景点照片
+                                                    var content = '<div style="padding:10px; max-width:300px;">' + 
+                                                            '<h4>' + item.name + '</h4>' + 
+                                                            '<p>序号: ' + item.order + '</p>' + 
+                                                            '<div style="text-align:center; margin-top:10px;">' +
+                                                            '<img src="' + photoUrl + '" onerror="this.onerror=null; this.src=\'' + defaultPhotoUrl + '\'" ' +
+                                                            'style="max-width:100%; max-height:150px; border-radius:5px;" alt="景点照片">' +
+                                                            '</div>' +
+                                                            '</div>';
+                                                        
+                                                        var infoWindow = new AMap.InfoWindow({
+                                                            content: content,
+                                                            offset: new AMap.Pixel(0, -30)
+                                                        });
+                                                        
+                                                        infoWindow.open(map, marker.getPosition());
+                                                    });
+                                                    
+                                                    markers.push(marker);
+                                                    path.push([item.lng, item.lat]);
+                                                });
+                                                
+                                                // 将所有标记添加到地图
+                                                map.add(markers);
+                                                
+                                                // 只显示景点标记点，不显示路径
+                                                if (sceneryData.length > 0) {
+                                                    // 确保所有景点标记可见
+                                                    map.setFitView(markers);
+                                                    console.log('显示所有景点标记点');
+                                                }
+                                                
+                                                // 自适应缩放级别
+                                                map.setFitView();
+                                            } else {
+                                                document.getElementById('mapContainer').innerHTML = 
+                                                    '<div class="alert alert-warning">无法加载地图数据</div>';
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 表单验证
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+}
